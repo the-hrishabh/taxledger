@@ -1,0 +1,57 @@
+{
+  "update_url": "https://clients2.google.com/service/update2/crx",
+
+  "name": "Tax Ladger By HSI",
+  "short_name": "Tax Ladger",
+  "version": "1.0",
+  "description": "GSTIN data download in JSON/XML/PDF from the GST Portal || Developed by HSI",
+  "manifest_version": 3,
+
+  "permissions": ["tabs", "storage", "activeTab", "scripting", "downloads"],
+
+  "host_permissions": [
+    "https://services.gst.gov.in/*",
+    "https://return.gst.gov.in/*",
+    "https://gstr2b.gst.gov.in/*",
+    "https://files.gst.gov.in/*",
+    "https://payment.gst.gov.in/*",
+    "https://hsi.com/*",
+    "https://hsi.com/*",
+    "https://publicservices.gst.gov.in/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "action": {
+    "default_icon": {
+      "16": "images/tax_ladger_icon.png",
+      "32": "images/tax_ladger_icon.png",
+      "48": "images/tax_ladger_icon.png",
+      "128": "images/tax_ladger_icon.png"
+    }
+  },
+
+  "icons": {
+    "16": "images/tax_ladger_icon.png",
+    "32": "images/tax_ladger_icon.png",
+    "48": "images/tax_ladger_icon.png",
+    "128": "images/tax_ladger_icon.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://services.gst.gov.in/*",
+        "https://return.gst.gov.in/*",
+        "https://gstr2b.gst.gov.in/*",
+        "https://files.gst.gov.in/*",
+        "https://payment.gst.gov.in/*",
+        "https://gst.gov.in/"
+      ],
+      "js": ["contentscript.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
